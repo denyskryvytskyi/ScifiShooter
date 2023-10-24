@@ -51,7 +51,6 @@ void AShooterCharacter::Move(const FInputActionValue& Value)
 
 void AShooterCharacter::Look(const FInputActionValue& Value)
 {
-
     // input is a Vector2D
     FVector2D LookAxisVector = Value.Get<FVector2D>();
 
