@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ShooterCharacter.h"
+#include "Gun.h"
 
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -32,6 +33,17 @@ void AShooterCharacter::BeginPlay()
 		{
             Subsystem->AddMappingContext(DefaultMappingContext, 0);
         }
+    }
+
+    Gun = GetWorld()->SpawnActor<AGun>(GunClass);
+
+    auto* MeshComp = GetMesh();
+    MeshComp->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
+
+    if (Gun)
+    {
+        Gun->AttachToComponent(MeshComp, FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+        Gun->SetOwner(this);
     }
 }
 

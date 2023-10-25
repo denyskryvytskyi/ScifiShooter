@@ -59,4 +59,9 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
     class UInputAction* LookAction;
 
+    UPROPERTY(EditDefaultsOnly)
+    TSubclassOf<class AGun> GunClass;
+
+    UPROPERTY()
+    AGun* Gun;
 };
