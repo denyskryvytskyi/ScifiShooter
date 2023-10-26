@@ -9,17 +9,16 @@
 #include "ShooterCharacter.generated.h"
 
 UCLASS()
-class SCIFISHOOTER_API AShooterCharacter : public ACharacter
-{
-	GENERATED_BODY()
+class SCIFISHOOTER_API AShooterCharacter : public ACharacter {
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
-	AShooterCharacter();
+    // Sets default values for this character's properties
+    AShooterCharacter();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
     // Called for movement input
     void Move(const FInputActionValue& Value);
@@ -27,16 +26,21 @@ protected:
     // Called for looking input
     void Look(const FInputActionValue& Value);
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+    // Called for shooting input
+    void Shoot(const FInputActionValue& Value);
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+public:
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
 
+    // Called to bind functionality to input
+    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+    UFUNCTION(BlueprintImplementableEvent)
+    void OnDie();
 
 protected:
-	/** Components */
+    /** Components */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     class USpringArmComponent* SpringArmComp;
 
@@ -47,7 +51,7 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
     class UInputMappingContext* DefaultMappingContext;
 
-	/** Jump Input Action */
+    /** Jump Input Action */
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
     class UInputAction* JumpAction;
 
@@ -58,6 +62,10 @@ protected:
     /** Look Input Action */
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
     class UInputAction* LookAction;
+
+    /** Shoot Input Action */
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+    class UInputAction* ShootAction;
 
     UPROPERTY(EditDefaultsOnly)
     TSubclassOf<class AGun> GunClass;
