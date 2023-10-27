@@ -74,4 +74,4 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 
 # AssetPackages folder (it's too big)
-Content/Assets/
+Content/AssetPacks/
