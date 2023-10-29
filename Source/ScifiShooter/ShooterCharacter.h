@@ -8,6 +8,8 @@
 
 #include "ShooterCharacter.generated.h"
 
+class AGun;
+
 UCLASS()
 class SCIFISHOOTER_API AShooterCharacter : public ACharacter {
     GENERATED_BODY()
@@ -15,6 +17,18 @@ class SCIFISHOOTER_API AShooterCharacter : public ACharacter {
 public:
     // Sets default values for this character's properties
     AShooterCharacter();
+
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
+
+    // Called to bind functionality to input
+    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+    void Shoot();
+
+    void Die();
+
+    bool IsAlive() const { return bIsAlive; }
 
 protected:
     // Called when the game starts or when spawned
@@ -27,15 +41,9 @@ protected:
     void Look(const FInputActionValue& Value);
 
     // Called for shooting input
-    void Shoot(const FInputActionValue& Value);
+    void ShootFromInput(const FInputActionValue& Value);
 
-public:
-    // Called every frame
-    virtual void Tick(float DeltaTime) override;
-
-    // Called to bind functionality to input
-    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+    // Implemented in blueprint
     UFUNCTION(BlueprintImplementableEvent)
     void OnDie();
 
@@ -68,8 +76,10 @@ protected:
     class UInputAction* ShootAction;
 
     UPROPERTY(EditDefaultsOnly)
-    TSubclassOf<class AGun> GunClass;
+    TSubclassOf<AGun> GunClass;
 
     UPROPERTY()
     AGun* Gun;
+
+    bool bIsAlive { true };
 };

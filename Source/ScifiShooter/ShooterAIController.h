@@ -16,9 +16,11 @@ class SCIFISHOOTER_API AShooterAIController : public AAIController {
 public:
     virtual void BeginPlay() override;
 
-    virtual void Tick(float DeltaSeconds) override;
+    bool IsAlive() const;
 
 protected:
     UPROPERTY(EditDefaultsOnly)
     class UBehaviorTree* AIBehavior;
+
+    bool bIsAlive { true };
 };

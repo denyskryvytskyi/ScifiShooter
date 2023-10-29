@@ -3,11 +3,11 @@
 #include "ScifiShooterGameModeBase.h"
 #include "ShooterCharacter.h"
 
-void AScifiShooterGameModeBase::ActorDied(AActor* Actor)
+void AScifiShooterGameModeBase::PawnKilled(APawn* Pawn)
 {
-    if (AShooterCharacter* Killed = Cast<AShooterCharacter>(Actor)) {
-        Killed->SetActorEnableCollision(false);
-        Killed->OnDie();
+    if (AShooterCharacter* Killed = Cast<AShooterCharacter>(Pawn)) {
+        Killed->Die();
+
         if (AController* KilledController = Killed->GetController()) {
             KilledController->UnPossess();
         }

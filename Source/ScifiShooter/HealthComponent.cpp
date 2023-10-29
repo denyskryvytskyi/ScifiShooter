@@ -29,6 +29,6 @@ void UHealthComponent::OnDamageTaken(AActor* DamagedActor, float Damage, AContro
     CurrentHealth = FMath::Max(0.0f, CurrentHealth - Damage);
 
     if (FMath::IsNearlyZero(CurrentHealth)) {
-        ShooterGameMode->ActorDied(DamagedActor);
+        ShooterGameMode->PawnKilled(Cast<APawn>(DamagedActor));
     }
 }

@@ -2,7 +2,8 @@
 
 #include "ShooterAIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Kismet\GameplayStatics.h"
+#include "Kismet/GameplayStatics.h"
+#include "ShooterCharacter.h"
 
 void AShooterAIController::BeginPlay()
 {
@@ -18,16 +19,11 @@ void AShooterAIController::BeginPlay()
     }
 }
 
-void AShooterAIController::Tick(float DeltaSeconds)
+bool AShooterAIController::IsAlive() const
 {
-    Super::Tick(DeltaSeconds);
-
-    if (APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(this, 0)) {
-        if (LineOfSightTo(PlayerPawn)) {
-            GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
-            GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLocation"), PlayerPawn->GetActorLocation());
-        } else {
-            GetBlackboardComponent()->ClearValue(TEXT("PlayerLocation"));
-        }
+    if (AShooterCharacter* OwnerPawn = Cast<AShooterCharacter>(GetPawn())) {
+        return OwnerPawn->IsAlive();
     }
+
+    return false;
 }

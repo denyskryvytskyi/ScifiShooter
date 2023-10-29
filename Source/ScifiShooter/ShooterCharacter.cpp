@@ -68,11 +68,9 @@ void AShooterCharacter::Look(const FInputActionValue& Value)
     }
 }
 
-void AShooterCharacter::Shoot(const FInputActionValue& Value)
+void AShooterCharacter::ShootFromInput(const FInputActionValue& Value)
 {
-    if (Gun) {
-        Gun->PullTrigger();
-    }
+    Shoot();
 }
 
 // Called every frame
@@ -98,6 +96,22 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
         EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AShooterCharacter::Look);
 
         // Shooting
-        EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &AShooterCharacter::Shoot);
+        EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &AShooterCharacter::ShootFromInput);
     }
+}
+
+void AShooterCharacter::Shoot()
+{
+    if (Gun) {
+        Gun->PullTrigger();
+    }
+}
+
+void AShooterCharacter::Die()
+{
+    SetActorEnableCollision(false);
+
+    bIsAlive = false;
+
+    OnDie();
 }
