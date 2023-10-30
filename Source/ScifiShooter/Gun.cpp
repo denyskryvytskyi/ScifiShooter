@@ -35,6 +35,7 @@ void AGun::Tick(float DeltaTime)
 void AGun::PullTrigger()
 {
     UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, MeshComp, TEXT("MuzzleFlashSocket"));
+    UGameplayStatics::SpawnSoundAttached(MuzzleSound, MeshComp, TEXT("MuzzleFlashSocket"));
 
     if (APawn* PawnOwner = Cast<APawn>(GetOwner())) {
         if (AController* InstigatorController = PawnOwner->GetController()) {
@@ -50,12 +51,13 @@ void AGun::PullTrigger()
 
             FHitResult Hit;
             if (GetWorld()->LineTraceSingleByChannel(Hit, Location, EndPoint, ECollisionChannel::ECC_GameTraceChannel1, Params)) {
-                // DrawDebugSphere(GetWorld(), Hit.ImpactPoint, 20.0f, 30, FColor::Red, true);
                 const FVector HitFromDirection = -Rotation.Vector();
 
                 if (AActor* DamagedActor = Hit.GetActor(); DamagedActor->ActorHasTag("Character")) {
                     // enemy hit
-                    UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), EnemyHitEffect, Hit.Location,
+                    UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),
+                                                             EnemyHitEffect,
+                                                             Hit.Location,
                                                              HitFromDirection.Rotation());
 
                     UGameplayStatics::ApplyPointDamage(DamagedActor,
@@ -67,9 +69,16 @@ void AGun::PullTrigger()
 
                 } else {
                     // world hit
-                    UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), WorldHitEffect, Hit.Location,
+                    UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),
+                                                             WorldHitEffect,
+                                                             Hit.Location,
                                                              HitFromDirection.Rotation());
                 }
+
+                UGameplayStatics::SpawnSoundAtLocation(GetWorld(),
+                                                       HitSound,
+                                                       Hit.Location,
+                                                       HitFromDirection.Rotation());
             }
         }
     }

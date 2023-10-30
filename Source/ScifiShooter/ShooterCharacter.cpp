@@ -2,6 +2,7 @@
 
 #include "ShooterCharacter.h"
 #include "Gun.h"
+#include "HealthComponent.h"
 
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -114,4 +115,13 @@ void AShooterCharacter::Die()
     bIsAlive = false;
 
     OnDie();
+}
+
+float AShooterCharacter::GetHealthPercent() const
+{
+    if (UHealthComponent* HealthComp = GetComponentByClass<UHealthComponent>()) {
+        return HealthComp->GetCurrentHealth() / HealthComp->GetMaxHealth();
+    }
+
+    return 0.0f;
 }

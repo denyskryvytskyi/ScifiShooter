@@ -40,6 +40,12 @@ protected:
     UParticleSystem* EnemyHitEffect;
 
     UPROPERTY(EditAnywhere, category = "Gun")
+    USoundBase* MuzzleSound;
+
+    UPROPERTY(EditAnywhere, category = "Gun")
+    USoundBase* HitSound;
+
+    UPROPERTY(EditAnywhere, category = "Gun")
     float MaxShootDistance { 1000.0f };
 
     UPROPERTY(EditAnywhere, category = "Gun")
