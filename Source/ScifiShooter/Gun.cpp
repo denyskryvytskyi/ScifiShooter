@@ -53,28 +53,28 @@ void AGun::PullTrigger()
             if (GetWorld()->LineTraceSingleByChannel(Hit, Location, EndPoint, ECollisionChannel::ECC_GameTraceChannel1, Params)) {
                 const FVector HitFromDirection = -Rotation.Vector();
 
-                if (AActor* DamagedActor = Hit.GetActor(); DamagedActor->ActorHasTag("Character")) {
-                    // enemy hit
-                    UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),
-                                                             EnemyHitEffect,
-                                                             Hit.Location,
-                                                             HitFromDirection.Rotation());
+                if (AActor* DamagedActor = Hit.GetActor()) {
+                    if (DamagedActor->ActorHasTag("Character")) {
+                        // enemy hit
+                        UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),
+                                                                 EnemyHitEffect,
+                                                                 Hit.Location,
+                                                                 HitFromDirection.Rotation());
 
-                    UGameplayStatics::ApplyPointDamage(DamagedActor,
-                                                       BulletDamage,
-                                                       HitFromDirection,
-                                                       Hit,
-                                                       InstigatorController,
-                                                       this, nullptr);
-
-                } else {
-                    // world hit
-                    UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),
-                                                             WorldHitEffect,
-                                                             Hit.Location,
-                                                             HitFromDirection.Rotation());
+                        UGameplayStatics::ApplyPointDamage(DamagedActor,
+                                                           BulletDamage,
+                                                           HitFromDirection,
+                                                           Hit,
+                                                           InstigatorController,
+                                                           this, nullptr);
+                    } else {
+                        // world hit
+                        UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),
+                                                                 WorldHitEffect,
+                                                                 Hit.Location,
+                                                                 HitFromDirection.Rotation());
+                    }
                 }
-
                 UGameplayStatics::SpawnSoundAtLocation(GetWorld(),
                                                        HitSound,
                                                        Hit.Location,
