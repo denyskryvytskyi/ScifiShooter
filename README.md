@@ -13,3 +13,7 @@ Here are some specific things I developed from scratch while making this game:
 
 https://github.com/denyskryvytskyi/ScifiShooter/assets/25298585/756d3f4c-9117-4cc1-9274-0127b88d5281
 
+# Getting started
+*Updated to the Unreal Engine 5.4.1.*
+1. `git clone https://github.com/denyskryvytskyi/ToonTanks`
+2. Run `ToonTanks.uproject`
