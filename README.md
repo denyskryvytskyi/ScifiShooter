@@ -11,7 +11,10 @@ Here are some specific things I developed from scratch while making this game:
 - enemy AI using UE5 Nav mesh for movement, Behavior Tree with Blackboard, and custom Services and Tasks.
 - HUD with a simple health bar, crosshair and win/lose messages.
 
-https://github.com/denyskryvytskyi/ScifiShooter/assets/25298585/756d3f4c-9117-4cc1-9274-0127b88d5281
+
+
+https://github.com/user-attachments/assets/739a4856-a9d8-40cb-9d83-98a44b739a01
+
 
 # Getting started
 *Updated to the Unreal Engine 5.4.1.*
