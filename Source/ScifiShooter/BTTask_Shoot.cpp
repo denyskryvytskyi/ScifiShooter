@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Denys Kryvytskyi. All Rights Reserved.
 
 #include "BTTask_Shoot.h"
 #include "AIController.h"

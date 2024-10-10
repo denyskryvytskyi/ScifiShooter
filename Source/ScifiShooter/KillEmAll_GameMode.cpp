@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Denys Kryvytskyi. All Rights Reserved.
 
 #include "KillEmAll_GameMode.h"
 #include "EngineUtils.h"
@@ -13,7 +13,7 @@ void AKillEmAll_GameMode::PawnKilled(APawn* Pawn)
 
     Super::PawnKilled(Pawn);
 
-    // check whether we kill all enemies
+    // check whether we killed all enemies
     for (AShooterAIController* AIController : TActorRange<AShooterAIController>(GetWorld())) {
         if (AIController->IsAlive()) {
             return;

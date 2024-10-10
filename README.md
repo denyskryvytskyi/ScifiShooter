@@ -11,9 +11,11 @@ Here are some specific things I developed from scratch while making this game:
 - enemy AI using UE5 Nav mesh for movement, Behavior Tree with Blackboard, and custom Services and Tasks.
 - HUD with a simple health bar, crosshair and win/lose messages.
 
+# Demo
 ![5](https://github.com/user-attachments/assets/4a4451cf-9e5f-460a-9acb-0544b206ec50)
 
 # Getting started
-*Updated to the Unreal Engine 5.4.1.*
-1. `git clone https://github.com/denyskryvytskyi/ToonTanks`
-2. Run `ToonTanks.uproject`
+*Updated to the Unreal Engine 5.4.3.*
+*Note: Unfortunately, I can not push some of the assets used in this project because of GitHub storage limits. So if you want to work with this repo, contact me.*
+1. `git clone https://github.com/denyskryvytskyi/ScifiShooter`
+2. Run `ScifiShooter.uproject`

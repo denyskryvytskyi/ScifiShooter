@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Denys Kryvytskyi. All Rights Reserved.
 
 #include "ShooterCharacter.h"
 #include "Gun.h"
@@ -10,10 +10,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 
-// Sets default values
 AShooterCharacter::AShooterCharacter()
 {
-    // Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;
 
     SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
@@ -23,7 +21,6 @@ AShooterCharacter::AShooterCharacter()
     CameraComp->SetupAttachment(SpringArmComp);
 }
 
-// Called when the game starts or when spawned
 void AShooterCharacter::BeginPlay()
 {
     Super::BeginPlay();
@@ -74,7 +71,6 @@ void AShooterCharacter::ShootFromInput(const FInputActionValue& Value)
     Shoot();
 }
 
-// Called every frame
 void AShooterCharacter::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
