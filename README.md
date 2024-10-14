@@ -18,4 +18,6 @@ Here are some specific things I developed from scratch while making this game:
 *Updated to the Unreal Engine 5.4.3.*
 *Note: Unfortunately, I can not push some of the assets used in this project because of GitHub storage limits. So if you want to work with this repo, contact me.*
 1. `git clone https://github.com/denyskryvytskyi/ScifiShooter`
-2. Run `ScifiShooter.uproject`
+2. Right-click the `ScifiShooter.uproject` file and select `Generate Visual Studio project files`
+3. Build project in Visual Studio (`Development Editor` configuration to run in Editor)
+4. Run `ScifiShooter.uproject`
