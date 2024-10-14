@@ -12,7 +12,7 @@ Here are some specific things I developed from scratch while making this game:
 - HUD with a simple health bar, crosshair and win/lose messages.
 
 # Demo
-![5](https://github.com/user-attachments/assets/4a4451cf-9e5f-460a-9acb-0544b206ec50)
+[<img src=".github/demo/ScifiShooterThumbnail.png">](https://youtu.be/6Yv0Ppb8wQY)
 
 # Getting started
 *Updated to the Unreal Engine 5.4.3.*
